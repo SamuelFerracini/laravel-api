@@ -71,6 +71,4 @@ const form = useForm({
 const submit = () => {
   form.post(route("skills.store"));
 };
-
-const test = console.log;
 </script>

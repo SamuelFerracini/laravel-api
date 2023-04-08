@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skill;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Redirect;
 
 class SkillController extends Controller
 {
@@ -11,7 +14,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        return 'SkillController';
+        return Inertia::render('Skills/index');
     }
 
     /**
@@ -19,7 +22,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Skills/create');
     }
 
     /**
@@ -27,7 +30,25 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => ['required', 'image'],
+            'name' => ['required', 'min:3'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('skills');
+
+            $skill = new Skill([
+                'name' => $request->name,
+                'image' => $image
+            ]);
+
+            $skill->save();
+
+            return Redirect::route('skills.index');
+        }
+
+        return Redirect::back();
     }
 
     /**

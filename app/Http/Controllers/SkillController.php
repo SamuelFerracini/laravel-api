@@ -2,13 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skill;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Redirect;
 
+use App\Http\Requests\StoreSkillRequest;
+use App\Services\SkillService;
+
+
 class SkillController extends Controller
 {
+
+    /**
+     * @var skillService
+     */
+    protected $skillService;
+
+    /**
+     * PostController Constructor
+     *
+     * @param SkillService $skillService
+     *
+     */
+    public function __construct(SkillService $skillService)
+    {
+        $this->skillService = $skillService;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -28,25 +49,12 @@ class SkillController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSkillRequest $request)
     {
-        $request->validate([
-            'image' => ['required', 'image'],
-            'name' => ['required', 'min:3'],
-        ]);
+        $skill = $this->skillService->save($request);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('skills');
-
-            $skill = new Skill([
-                'name' => $request->name,
-                'image' => $image
-            ]);
-
-            $skill->save();
-
+        if ($skill)
             return Redirect::route('skills.index');
-        }
 
         return Redirect::back();
     }

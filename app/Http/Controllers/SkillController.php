@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Redirect;
 
 use App\Http\Requests\StoreSkillRequest;
+use App\Http\Resources\SkillResource;
 use App\Services\SkillService;
 
 
@@ -35,7 +36,9 @@ class SkillController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Skills/index');
+        $skills = SkillResource::collection($this->skillService->findAll());
+
+        return Inertia::render('Skills/index', compact('skills'));
     }
 
     /**

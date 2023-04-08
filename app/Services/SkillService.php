@@ -23,6 +23,16 @@ class SkillService
   }
 
   /**
+   * Find all Skills
+   *
+   * @return \Illuminate\Database\Eloquent\Collection Skill
+   */
+  public function findAll()
+  {
+    return $this->skillRepository->findAll();
+  }
+
+  /**
    * Store to database.
    *
    * @param array $validated

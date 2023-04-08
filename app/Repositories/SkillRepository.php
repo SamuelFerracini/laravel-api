@@ -21,6 +21,17 @@ class SkillRepository
     $this->skill = $skill;
   }
 
+
+  /**
+   * Find all Skills
+   *
+   * @return \Illuminate\Database\Eloquent\Collection Skill
+   */
+  public function findAll()
+  {
+    return $this->skill::all();
+  }
+
   /**
    * Create Skill
    *

@@ -23,6 +23,16 @@ class ProjectService
   }
 
   /**
+   * Find all projects
+   *
+   * @return \Illuminate\Database\Eloquent\Collection Project
+   */
+  public function findAll()
+  {
+    return $this->projectRepository->findAll();
+  }
+
+  /**
    * Store to database.
    *
    * @param array $validated

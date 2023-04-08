@@ -22,6 +22,16 @@ class ProjectRepository
   }
 
   /**
+   * Find all Projects
+   *
+   * @return \Illuminate\Database\Eloquent\Collection Project
+   */
+  public function findAll()
+  {
+    return $this->project::all();
+  }
+
+  /**
    * Create Project
    *
    * @param $data

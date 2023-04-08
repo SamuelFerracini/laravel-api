@@ -10,7 +10,7 @@
     </th>
     <td class="px-6 py-4">{{ skill.name }}</td>
     <td class="px-6 py-4">
-      {{ skill.image }}
+      <img :src="skill.image" class="w-12 h-12 rounded-full" />
     </td>
     <td class="px-6 py-4 text-right">
       <a

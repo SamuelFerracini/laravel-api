@@ -33,9 +33,9 @@ class ProjectService
     $validated = $request->validated();
 
     if ($request->hasFile('image')) {
-      $image = $request->file('image')->store('projects');
+      $image = $request->file('image')->store('public/projects');
 
-      return $this->projectRepository->create([...$validated, 'image' => $image]);
+      return $this->projectRepository->create([...$validated, 'image' => str_replace('public/', '', $image)]);
     }
   }
 }

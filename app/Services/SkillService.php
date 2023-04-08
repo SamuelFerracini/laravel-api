@@ -43,9 +43,9 @@ class SkillService
     $validated = $request->validated();
 
     if ($request->hasFile('image')) {
-      $image = $request->file('image')->store('skills');
+      $image = $request->file('image')->store('public/skills');
 
-      return $this->skillRepository->create([...$validated, 'image' => $image]);
+      return $this->skillRepository->create([...$validated, 'image' => str_replace('public/', '', $image)]);
     }
   }
 }

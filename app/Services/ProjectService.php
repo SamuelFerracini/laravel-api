@@ -8,18 +8,18 @@ use App\Repositories\ProjectRepository;
 class ProjectService
 {
   /**
-   * @var $projectService
+   * @var $projectRepository
    */
-  protected $projectService;
+  protected $projectRepository;
 
   /**
    * ProjectService constructor.
    *
-   * @param ProjectRepository $projectService
+   * @param ProjectRepository $projectRepository
    */
-  public function __construct(ProjectRepository $projectService)
+  public function __construct(ProjectRepository $projectRepository)
   {
-    $this->projectService = $projectService;
+    $this->projectRepository = $projectRepository;
   }
 
   /**
@@ -35,7 +35,7 @@ class ProjectService
     if ($request->hasFile('image')) {
       $image = $request->file('image')->store('projects');
 
-      return $this->projectService->create([...$validated, 'image' => $image]);
+      return $this->projectRepository->create([...$validated, 'image' => $image]);
     }
   }
 }

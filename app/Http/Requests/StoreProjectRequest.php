@@ -14,7 +14,7 @@ class StoreProjectRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'name' => ['required', 'string', 'max:255'],
+      'name' => ['required', 'string', 'min:3', 'max:255'],
       'image' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
       'project_url' => ['required', 'url'],
       'skill_id' => ['required', 'exists:skills,id'],

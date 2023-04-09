@@ -67,6 +67,7 @@ const props = defineProps({
 
 const form = useForm({
   _method: "put",
+
   name: props.skill?.name,
   image: null,
 });

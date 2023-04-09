@@ -1,7 +1,7 @@
 <script setup>
 defineProps({
   modelValue: {
-    type: String,
+    type: [String, Number],
     required: false,
   },
 
@@ -37,7 +37,9 @@ defineEmits(["update:modelValue"]);
     class="w-full"
     @change="$emit('update:modelValue', $event.target.value)"
   >
-    <option value="" selected disabled hidden>Choose here</option>
+    <option v-if="!modelValue" value="" selected disabled hidden>
+      Choose here
+    </option>
 
     <option v-for="item in items" :key="item[keyId]" :value="item[keyValue]">
       {{ item[keyText] }}

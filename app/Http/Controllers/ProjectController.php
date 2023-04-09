@@ -59,7 +59,7 @@ class ProjectController extends Controller
         $project = $this->projectService->store($request);
 
         if ($project)
-            return Redirect::route('projects.index');
+            return Redirect::route('projects.index')->with('message', 'Project created successfully.');
 
         return Redirect::back();
     }
@@ -89,7 +89,7 @@ class ProjectController extends Controller
     {
         $this->projectService->update($request, $project);
 
-        return Redirect::route('projects.index');
+        return Redirect::route('projects.index')->with('message', 'Project edited successfully.');
     }
 
     /**
@@ -97,6 +97,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $this->projectService->delete($project);
+        $this->projectService->delete($project)->with('message', 'Project deleted successfully.');
     }
 }

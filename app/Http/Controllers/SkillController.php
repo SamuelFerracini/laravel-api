@@ -58,7 +58,7 @@ class SkillController extends Controller
         $skill = $this->skillService->store($request);
 
         if ($skill)
-            return Redirect::route('skills.index');
+            return Redirect::route('skills.index')->with('message', 'Skill created successfully.');
 
         return Redirect::back();
     }
@@ -86,7 +86,7 @@ class SkillController extends Controller
     {
         $this->skillService->update($request, $skill);
 
-        return Redirect::route('skills.index');
+        return Redirect::route('skills.index')->with('message', 'Skill edited successfully.');
     }
 
     /**
@@ -96,6 +96,6 @@ class SkillController extends Controller
     {
         $this->skillService->delete($skill);
 
-        return Redirect::back();
+        return Redirect::back()->with('message', 'Skill deleted successfully.');
     }
 }

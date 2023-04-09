@@ -16,6 +16,8 @@ class SkillService
    */
   protected $skillRepository;
 
+  private $rootDirectory = 'public/skills';
+
   /**
    * SkillService constructor.
    *
@@ -47,15 +49,14 @@ class SkillService
     $validated = $request->validated();
 
     if ($request->hasFile('image')) {
-      $image = $request->file('image')->store('public/skills');
+      $image = $request->file('image')->store($this->rootDirectory);
 
       return $this->skillRepository->create([...$validated, 'image' => str_replace('public/', '', $image)]);
     }
   }
 
-
   /**
-   * Store to database.
+   * Update into database.
    *
    * @param UpdateSkillRequest $request
    * @param Skill $skill

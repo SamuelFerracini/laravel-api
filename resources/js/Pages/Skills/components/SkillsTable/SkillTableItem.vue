@@ -12,17 +12,29 @@
     <td class="px-6 py-4">
       <img :src="skill.image" class="w-12 h-12 rounded-full" />
     </td>
-    <td class="px-6 py-4 text-right">
-      <a
-        href="#"
-        class="font-medium text-blue-600 light:text-blue-500 hover:underline"
-        >Edit</a
+    <td class="px-6 py-4 text-right flex flex-col flex-end">
+      <Link
+        :href="route('skills.edit', skill.id)"
+        class="font-medium text-blue-500 hover:text-blue-700"
+        as="button"
       >
+        Edit
+      </Link>
+      <Link
+        :href="route('skills.destroy', skill.id)"
+        method="delete"
+        as="button"
+        class="font-medium text-red-500 hover:text-red-700"
+      >
+        Delete
+      </Link>
     </td>
   </tr>
 </template>
 
 <script setup>
+import { Link } from "@inertiajs/vue3";
+
 defineProps({
   skill: Object,
 });

@@ -35,11 +35,10 @@ defineEmits(["update:modelValue"]);
 <template>
   <select
     class="w-full"
+    :value="modelValue"
     @change="$emit('update:modelValue', $event.target.value)"
   >
-    <option v-if="!modelValue" value="" selected disabled hidden>
-      Choose here
-    </option>
+    <option value="" selected disabled hidden>Choose here</option>
 
     <option v-for="item in items" :key="item[keyId]" :value="item[keyValue]">
       {{ item[keyText] }}

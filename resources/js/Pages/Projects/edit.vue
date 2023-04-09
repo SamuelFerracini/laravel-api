@@ -71,7 +71,7 @@
               :class="{ 'opacity-25': form.processing }"
               :disabled="form.processing"
             >
-              Register
+              Edit
             </PrimaryButton>
           </div>
         </form>
@@ -100,10 +100,8 @@ const props = defineProps({
 const form = useForm({
   _method: "put",
 
-  name: "",
-  project_url: "",
-  ...props.project,
-
+  name: props.project?.name,
+  project_url: props.project?.project_url,
   skill_id: props.project?.skill_id,
   image: null,
 });

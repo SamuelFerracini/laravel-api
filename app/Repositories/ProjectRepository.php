@@ -45,4 +45,30 @@ class ProjectRepository
 
     return $project->fresh();
   }
+
+
+  /**
+   * Update Project
+   *
+   * @param array $data
+   * @param Project $project
+   * @return Project
+   */
+  public function update($data, Project $project)
+  {
+    $project->update($data);
+
+    return $project;
+  }
+
+  /**
+   * Update Project
+   *
+   * @param Project $project
+   * @return void
+   */
+  public function delete(Project $project)
+  {
+    $project->delete();
+  }
 }

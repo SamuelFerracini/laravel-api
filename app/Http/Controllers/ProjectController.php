@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProjectResource;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Redirect;
 
+use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Resources\ProjectResource;
 use App\Services\ProjectService;
+use App\Models\Project;
 use App\Models\Skill;
 
 
@@ -55,7 +56,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $project = $this->projectService->save($request);
+        $project = $this->projectService->store($request);
 
         if ($project)
             return Redirect::route('projects.index');
@@ -74,24 +75,26 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        return Inertia::render('Projects/edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $this->projectService->update($request, $project);
+
+        return Redirect::route('skills.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $this->projectService->delete($project);
     }
 }

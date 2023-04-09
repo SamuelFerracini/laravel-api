@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Redirect;
 
+use App\Http\Requests\UpdateSkillRequest;
 use App\Http\Requests\StoreSkillRequest;
 use App\Http\Resources\SkillResource;
 use App\Services\SkillService;
+use App\Models\Skill;
 
 
 class SkillController extends Controller
@@ -54,7 +55,7 @@ class SkillController extends Controller
      */
     public function store(StoreSkillRequest $request)
     {
-        $skill = $this->skillService->save($request);
+        $skill = $this->skillService->store($request);
 
         if ($skill)
             return Redirect::route('skills.index');
@@ -73,24 +74,28 @@ class SkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Skill $skill)
     {
-        //
+        return Inertia::render('Skills/edit', compact('skill'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSkillRequest $request, Skill $skill)
     {
-        //
+        $this->skillService->update($request, $skill);
+
+        return Redirect::route('skills.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Skill $skill)
     {
-        //
+        $this->skillService->delete($skill);
+
+        return Redirect::back();
     }
 }

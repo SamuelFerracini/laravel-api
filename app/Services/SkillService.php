@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
+use Storage;
+
 use App\Http\Requests\StoreSkillRequest;
+use App\Http\Requests\UpdateSkillRequest;
 use App\Repositories\SkillRepository;
+use App\Models\Skill;
 
 class SkillService
 {
@@ -38,7 +42,7 @@ class SkillService
    * @param array $validated
    * @return mixed Skill or void
    */
-  public function save(StoreSkillRequest $request)
+  public function store(StoreSkillRequest $request)
   {
     $validated = $request->validated();
 
@@ -47,5 +51,45 @@ class SkillService
 
       return $this->skillRepository->create([...$validated, 'image' => str_replace('public/', '', $image)]);
     }
+  }
+
+
+  /**
+   * Store to database.
+   *
+   * @param UpdateSkillRequest $request
+   * @param Skill $skill
+   * @return Skill
+   */
+  public function update(UpdateSkillRequest $request, Skill $skill)
+  {
+    $validated = $request->validated();
+
+    $image = $skill->image;
+
+    if ($request->hasFile('image')) {
+      Storage::delete('public/skills/' . $skill->image);
+
+      $image = $request->file('image')->store('public/skills');
+      $image = str_replace('public/', '', $image);
+    }
+
+    return $this->skillRepository->update([
+      ...$validated,
+      'image' => $image
+    ], $skill);
+  }
+
+
+  /**
+   * Delete skill and remove its image.
+   *
+   * @param Skill skill
+   * @return void
+   */
+  public function delete(Skill $skill)
+  {
+    Storage::delete('public/skills/' . $skill->image);
+    $this->skillRepository->delete($skill);
   }
 }

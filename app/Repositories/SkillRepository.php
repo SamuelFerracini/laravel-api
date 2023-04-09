@@ -35,7 +35,7 @@ class SkillRepository
   /**
    * Create Skill
    *
-   * @param $data
+   * @param array $data
    * @return Skill
    */
   public function create($data)
@@ -45,5 +45,30 @@ class SkillRepository
     $skill->save();
 
     return $skill->fresh();
+  }
+
+  /**
+   * Update Skill
+   *
+   * @param array $data
+   * @param Skill $skill
+   * @return Skill
+   */
+  public function update($data, Skill $skill)
+  {
+    $skill->update($data);
+
+    return $skill;
+  }
+
+  /**
+   * Update Skill
+   *
+   * @param Skill $skill
+   * @return void
+   */
+  public function delete(Skill $skill)
+  {
+    $skill->delete();
   }
 }

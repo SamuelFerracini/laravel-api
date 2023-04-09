@@ -77,7 +77,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return Inertia::render('Projects/edit', compact('project'));
+        $skills = Skill::all();
+
+        return Inertia::render('Projects/edit', compact('project', 'skills'));
     }
 
     /**
@@ -87,7 +89,7 @@ class ProjectController extends Controller
     {
         $this->projectService->update($request, $project);
 
-        return Redirect::route('skills.index');
+        return Redirect::route('projects.index');
     }
 
     /**

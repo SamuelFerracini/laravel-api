@@ -2,7 +2,6 @@
   <input
     accept="image/png, image/gif, image/jpeg"
     type="file"
-    required
     @input="$emit('update:modelValue', $event.target.files[0])"
   />
 </template>

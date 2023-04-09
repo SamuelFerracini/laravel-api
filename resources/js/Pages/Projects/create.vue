@@ -34,7 +34,6 @@
               class="mt-1 block w-full"
               v-model="form.name"
               required
-              autocomplete="name"
             />
 
             <InputError class="mt-2" :message="form.errors.name" />
@@ -49,7 +48,6 @@
               class="mt-1 block w-full"
               v-model="form.project_url"
               required
-              autocomplete="project_url"
             />
 
             <InputError class="mt-2" :message="form.errors.project_url" />

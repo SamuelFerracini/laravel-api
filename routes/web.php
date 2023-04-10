@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProjectController;
@@ -45,5 +46,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
+Route::post('/contact', ContactMeController::class)->name('contact');
 
 require __DIR__ . '/auth.php';

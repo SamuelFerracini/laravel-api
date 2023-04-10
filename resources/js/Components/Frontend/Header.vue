@@ -74,8 +74,7 @@ const scrollBg = ref(false);
 const navigations = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "Services", href: "#services" },
+  // { name: "Portfolio", href: "#portfolio" },
   { name: "Contact", href: "#contact" },
 ];
 const setScrollBg = (value) => {

@@ -20,7 +20,6 @@ const socials = [
   >
     <div
       class="container mx-auto h-full"
-      v-motion
       :initial="{
         opacity: 0,
         y: 100,
@@ -49,13 +48,14 @@ const socials = [
             <h5
               class="text-lg flex justify-center lg:justify-start items-center text-black dark:text-white mb-2"
             >
-              Follow me on
+              Reach me on
             </h5>
             <div class="flex items-center mb-6">
               <a
                 v-for="social in socials"
                 class="w-12 h-12 rounded-full flex items-center justify-center border border-white text-black dark:text-white hover:bg-light-secondary hover:border-light-secondary dark:hover:bg-dark-secondary dark:hover:border-dark-secondary mr-3 sm:mr-4"
                 :href="social.link"
+                target="_blank"
               >
                 <img :src="social.icon" :alt="`${social.name} logo`" />
               </a>

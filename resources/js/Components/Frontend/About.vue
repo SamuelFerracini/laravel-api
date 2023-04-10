@@ -2,7 +2,6 @@
   <section id="about" class="section bg-light-secondary dark:bg-dark-secondary">
     <div
       class="container mx-auto"
-      v-motion
       :initial="{
         opacity: 0,
         y: 100,
@@ -25,7 +24,7 @@
             <h2 class="text-3xl lg:text-4xl font-medium lg:font-extrabold mb-3">
               About Me
             </h2>
-            <P class="mb-4 text-accent">Fullstack developer</P>
+            <p class="mb-4 text-accent">Fullstack developer</p>
             <hr class="mb-8 opacity-90 dark:opacity-5" />
             <p class="mb-8">
               Highly motivated and skilled strong Software Developer with 4+

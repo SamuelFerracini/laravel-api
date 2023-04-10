@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\SkillController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/projects', ProjectController::class);
 });
 
-
+Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 
 require __DIR__ . '/auth.php';

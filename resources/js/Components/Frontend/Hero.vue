@@ -65,7 +65,7 @@ const socials = [
         <div class="flex flex-1 justify-end items-center h-full mt-8 md:mt-0">
           <img
             class="rounded-lg"
-            src="http://localhost:8000/img/hero.jpg"
+            src="http://localhost:8000/img/hero.png"
             alt="Hero"
           />
         </div>
